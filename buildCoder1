@@ -1,0 +1,31 @@
+def buildCoder(shift):
+    """
+    Returns a dict that can apply a Caesar cipher to a letter.
+    The cipher is defined by the shift value. Ignores non-letter characters
+    like punctuation, numbers, and spaces.
+
+    shift: 0 <= int < 26
+    returns: dict
+    """
+    ### TODO
+    upperCase = {}
+    lowerCase = {}
+    upletters = ('A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q',
+               'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z') 
+    lowletters = ('a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q',
+               'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z')  
+ 
+    for l in lowletters:
+        start = lowletters.index(l)
+        stop = lowletters.index(l) + shift
+        if stop > 25:
+            stop = stop % 26
+        lowerCase.update({lowletters[start]:lowletters[stop]}) 
+    for l in upletters:
+        start = upletters.index(l)
+        stop = upletters.index(l) + shift
+        if stop > 25:
+            stop = stop % 26
+        upperCase.update({upletters[start]:upletters[stop]})
+    both = dict(upperCase.items() + lowerCase.items())
+    return both
