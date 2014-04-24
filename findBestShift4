@@ -1,0 +1,22 @@
+def findBestShift(wordList, text)  
+    """
+    Finds a shift key that can decrypt the encoded text.
+
+    text: string
+    returns: 0 <= int < 26
+    """
+    realWords = 0
+    currentWords = 0
+    bestShift = 0
+    shift = 0
+    words = []
+    for shift in range(26):
+        newText = applyShift(text, shift)
+        for word in newText.split():
+            if isWord(wordList, word) == True:
+                words += word
+        realWords = len(words)
+        if realWords > currentWords:
+            currentWords = realWords
+            bestShift = shift
+    return bestShift
